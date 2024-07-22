@@ -1,0 +1,23 @@
+//6. Seats in a classroom/theater
+using namespace std;
+  int fact(int n){
+    int x=1;
+    for (int i=1;i<=n; ++i){
+        x=x*i;}
+        return x;
+}
+    int main(){
+    int r;
+    int n;
+    cin>>r;
+    cin>>n;
+        if(n<r){
+         cout<<"Cannot adjust n people on r seats";
+    }
+    else
+    {
+    int res=fact(n)/fact(n-r);
+    cout<<res;
+    }
+    return 0;
+    }
