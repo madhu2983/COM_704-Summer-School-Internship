@@ -1,0 +1,26 @@
+//4. Best time to buy and sell stock
+#include <vector>
+#include <algorithm>
+using namespace std;
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        if (prices.empty()) {
+            return 0;
+        }
+
+        int maxProfit = 0;
+        int minPrice = prices[0];
+
+        for (auto i = prices.begin() + 1; i != prices.end(); ++i) {
+            if (*i - minPrice > maxProfit) {
+                maxProfit = *i - minPrice;
+            }
+            if (*i < minPrice) {
+                minPrice = *i;
+            }
+        }
+
+        return maxProfit;
+    }
+};
