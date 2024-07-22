@@ -1,0 +1,18 @@
+//5. Remove even Digit
+using namespace std;
+int main() {
+    int i=1;
+    int n1=0;
+    int n;
+    cin >> n;
+    while (n > 0) {
+        int digits = n % 10;  
+        if(digits%2==1){
+            n1=n1+digits*i;
+            i=i*10;
+        }  
+        n = n / 10; 
+    } 
+    cout<<n1;
+return 0;
+}
