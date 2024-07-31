@@ -1,0 +1,30 @@
+//Middle-of-Linked-List
+//First Approach
+Node *findMiddle(Node *head) {
+    int count = 0;
+    Node *temp=head;
+    while (temp!= NULL) {
+        count++;
+        temp=temp->next;
+    }
+    int mid=count/2;
+    temp=head;
+    for (int i=0;i<mid;++i) {
+        temp=temp->next;
+    }
+    return temp;
+}
+
+
+
+//2nd Approach
+Node *findMiddle(Node *head) {
+    Node *p1=head;
+    Node *p2=head;
+    while (p1!=NULL && p1->next!=NULL) {
+      p1 = p1->next->next;
+      p2 = p2->next;
+    }
+
+    return p2;
+}
