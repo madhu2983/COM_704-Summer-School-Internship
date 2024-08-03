@@ -1,0 +1,118 @@
+//1st approach
+class MinStack {
+public:
+    stack<int>s;
+    stack<int>p;
+
+    MinStack() {
+        
+    }
+    void push(int val){
+        if(p.empty() || p.top()>=val){
+        s.push(val);
+        p.push(val);
+    }
+    else
+        s.push(val);
+    }
+    
+    void pop() {
+        if(s.top()==p.top()){ 
+			s.pop();
+            p.pop();
+        }
+        else
+            s.pop();
+        
+    }
+    
+    int top() {
+         return s.top();
+        
+    }
+    
+    int getMin() {
+        stack<int>p=s;
+        int min=INT_MAX;
+        while(!p.empty()){
+            if(p.top()<min){
+                min=p.top();
+            }
+            p.pop();
+        }
+
+        return min;
+    }
+};
+
+
+
+//2nd approach
+//2nd approach
+class MinStack {
+public:
+    stack<int>s;
+    stack<int>p;
+
+    MinStack() {
+        
+    }
+    void push(int val){
+        s.push(val);
+    }
+    
+    void pop() {
+        s.pop();
+        
+    }
+    
+    int top() {
+         return s.top();
+        
+    }
+    
+    int getMin() {
+        stack<int>p=s;
+        int min=p.top();
+        p.pop();
+        while(!p.empty()){
+            if(p.top()<min){
+                min=p.top();
+            }
+            p.pop();
+        }
+
+        return min;
+    }
+};
+
+
+
+
+//3rd approach
+class MinStack {
+public:
+    vector<int>s1;
+
+    MinStack() {
+        
+    }
+    void push(int val){
+        s1.push_back(val);
+    }
+    
+    void pop() {
+        s1.pop_back();
+        
+    }
+    
+    int top() {
+         return s1.back();
+        
+    }
+    
+    int getMin() {
+        return *min_element(s1.begin(),s1.end());
+    }
+};
+ 
