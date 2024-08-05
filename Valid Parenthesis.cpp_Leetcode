@@ -1,0 +1,36 @@
+//Valid Parenthesis
+//Iterate all the character of string one by one:
+//step 1:if the character is a opening bracket push it into the stack
+//step 2:else if the current character is a closing bracket and of the top of the stack contains an opening brackets of the same type then remove the top element of thedtack else return false 
+//after iteration complete return true(means your experssion is valid)
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char>s1;
+        for(int i=0;i<s.size();i++){//Iterate all the character
+            char ch=s[i];
+            if(ch=='(' || ch=='{' || ch=='['){
+                s1.push(ch);
+            }else{
+                if(!s1.empty()){
+                    if(s1.top()=='(' && ch==')' ||
+                     s1.top()=='{' && ch=='}' || 
+                     s1.top()=='[' && ch==']'){
+                        s1.pop();
+                    }else{
+                        return false;
+                }
+                }else{
+                    return false;
+                }
+            }
+        }
+        if(s1.empty()){
+            return true;
+        }
+        return false;
+    }
+};
+
+
+
