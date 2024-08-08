@@ -1,0 +1,86 @@
+//Longest Valid Parenthesis Leetcode
+//First Approach Using Stack
+//create a stack
+//max=0
+//push value -1 in the stack
+//Iterate all the element of string from begining to end one by one:
+//1.if the character is opening bracket push the index of it into stack.
+//2.otherwise
+//1.remove the top element from the stack
+//2. Check stack is empty.
+//1.if empty put that character index in the stack
+//2.find the maximum between maximum and current_index - stack+top
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        stack<int>s1;
+        s1.push(-1);
+        int maxa = 0;
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='(')
+            {
+                s1.push(i);
+            }
+            else{
+                s1.pop();
+                if(s1.empty())
+                        s1.push(i);
+                else{
+                 maxa = max(maxa, i-s1.top());
+
+            }
+        }
+    }
+    return maxa;
+        
+    }
+};
+
+
+
+
+//2nd Approach using count
+class Solution {
+public:
+
+    int longestValidParentheses(string s) {
+        
+        int count1=0;
+        int count2=0;
+        int maxl=0;
+        int max2=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='('){
+                count1++;
+            }
+            else if(s[i]==')'){
+                count2++;
+            }
+            if(count1==count2){
+                maxl=max(maxl,count1+count2);
+            }
+            else if(count1 < count2){
+                count1=0;
+                count2=0;
+            }
+            }
+count1=count2=0;            
+            for(int i=s.length()-1;i>=0;i--){
+            if(s[i]=='('){
+                count1++;
+            }
+            else if(s[i]==')'){
+                count2++;
+            }
+            if(count1==count2){
+                max2=max(max2,count1+count2);
+            }
+            else if(count1 > count2){
+                count1=0;
+                count2=0;
+            }
+            }
+            int res= max(maxl,max2);
+            return res;
+            }
+    };
