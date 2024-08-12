@@ -9,6 +9,7 @@
  * };
  */
 
+//1st approach
 class Solution {
 public:
     void getAncestor(TreeNode* root, TreeNode* node,vector<TreeNode*> &v){
@@ -29,18 +30,47 @@ public:
         vector<TreeNode*>a1,a2;
        getAncestor(root,p,a1);
         getAncestor(root,q,a2);
-        reverse(a1.begin(), a1.end());
-        reverse(a2.begin(), a2.end());
-        TreeNode* c = NULL;
-        for (int i = 0; i < min(a1.size(), a2.size()); ++i) {
-        if (a1[i] == a2[i])
-        c = a1[i];
-        else
-        break;
+        TreeNode* ans;
+        for(TreeNode* t:a2){
+            if(find(a1.begin(),a1.end(),t) != a1.end()){
+                ans = t;
+                break;
+        }
     }
-    return c;
+    return ans;
              
     }
 };
+
+
+
+
+
+//2nd Approach
+ class Solution {
+public:
+ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    if(root == NULL)
+        return NULL;
+    else if(p->val < root->val && q->val < root->val)
+        return lowestCommonAncestor(root->left,p,q);
+    else if(p->val > root->val && q->val > root->val)
+        return lowestCommonAncestor(root->right,p,q);
+    return root;
+ }
+ };
+    
+   
+
+    
+   
+
+
+
+
+
+
+
+
 
 
